@@ -1,0 +1,4 @@
+(library
+  (name day)
+  (libraries core ppx_deriving)
+  (preprocess (pps ppx_deriving.std ppx_deriving.show)))
