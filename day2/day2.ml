@@ -16,7 +16,10 @@ let rec operate prog ip =
   then prog
   else operate (step prog ip) (ip + 4)
 
-let run input noun verb =
+let rec run input noun verb =
   input.(1) <- noun;
   input.(2) <- verb;
-  operate input 0
+  let output = (operate (Array.copy input) 0).(0) in
+  if output = 19690720
+  then 100 * noun + verb
+  else if verb >= 99 then (if noun >= 99 then -1 else run input (noun + 1) 0) else run input noun (verb + 1)
